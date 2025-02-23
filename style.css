@@ -897,7 +897,7 @@ strong {
         form button {
             width: 100%;
             padding: 10px;
-            background: var(--nav-hover-color);
+            background: var(--first-color);
             border: none;
             color: var(--text-color);
             cursor: pointer;
@@ -906,7 +906,7 @@ strong {
         }
 
         form button:hover {
-            background: var(--first-color);
+            background: var(--nav-hover-color);
         }
 
 
@@ -1310,6 +1310,11 @@ strong {
 
         /* Responsive design for small screens like mobile phones */
         @media (max-width: 575px) {
+
+              section .about{
+                height: auto !important;
+                min-height: 40vh;  
+               }   
             .bd-container {
                 width: calc(100% - 22rem); /* Increased margin for small screens */
             }
@@ -1374,9 +1379,13 @@ strong {
             }
             
             .bag-container {
+                position: fixed;
                 width: 100%;
                 right: 0;
-                height: 100vh;
+                max-height: 100vh;
+                z-index: 1000;
+                overflow-y: auto;
+                bottom: 0;
                 top: 65px;
                 padding: 10px;
                 border-radius: 0;
@@ -1417,12 +1426,6 @@ strong {
             .cart-footer {
                 font-size: 1.4rem;
             }    
-
-            .slideshow-container
-            {
-                margin-bottom: 0px;
-                padding-bottom: 0px;
-            }
             .prev, .next {
                 font-size: 12px;
                 padding: 6px;
