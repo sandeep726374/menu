@@ -702,12 +702,16 @@ strong {
     }
 
     .bag-container {
+        position: fixed;
         width: 100%;
         right: 0;
-        height: 100vh;
+        max-height: 100vh;
+        z-index: 1000;
+        overflow-y: auto;
+        bottom: 0;
         top: 65px;
         padding: 10px;
-        border-radius: 0px;
+        border-radius: 0;
     }
 
     .cart-item {
