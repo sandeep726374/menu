@@ -1181,7 +1181,7 @@ strong {
                 cursor: pointer;
             }
             .home-gif img {
-                width: 300px;
+                width: 380px;
             }
             .navbar {
                 position: absolute;
@@ -1311,10 +1311,26 @@ strong {
         /* Responsive design for small screens like mobile phones */
         @media (max-width: 575px) {
 
-              section .about{
+            .home-gif{
+                width: 100vw; 
+                margin: 0;
+                padding: 0px 0px !important;
+                height:100vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: stretch;
+
+            }
+            .home-gif img{
+                height: 100vh;
+                width: 100vw;
+                margin: 0;
+            }
+            section .about{
                 height: auto !important;
                 min-height: 40vh;  
-               }   
+            }   
             .bd-container {
                 width: calc(100% - 22rem); /* Increased margin for small screens */
             }
