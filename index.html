@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habibi Vizag Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://res.cloudinary.com/du6iqoato/image/upload/v1739440849/logo_png-removebg-preview_zsdozb.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    <!-- header logo -->
+    <link rel="shortcut icon" href="https://res.cloudinary.com/du6iqoato/image/upload/v1739440849/logo_png-removebg-preview_zsdozb.png" type="image/svg+xml">
+
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img class="hlogo" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739440849/logo_png-removebg-preview_zsdozb.png" alt="logo">
+            <img class="name" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739440848/BrandName_png-removebg-preview_mby06f.png" alt="BrandName">
+        </div>
+    
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+            <a href="#home" class="active">Home</a>
+            <a href="#about">About us</a>
+            <a href="#menu">Menu</a>
+            <a href="#why-choose-us">Why Choose Us?</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    
+        <!-- Icons for Small Screens -->
+        <div class="icons">
+            <!-- <i class='bx bx-shopping-bag bag-icon' id="bag-icon"></i> -->
+            <i class="fa fa-shopping-bag bag-icon" id="bag-icon"></i> 
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </div>
+    </header>
+
+    <!-- Cart Container -->
+    <div class="bag-container" id="cart-container">
+        <button class="close-btn" id="close-cart">X</button> 
+        <h3>Your Cart</h3>
+        <div id="cart-items">
+            <!-- Template for Cart Items (Initially Hidden) -->
+            <div class="cart-item template" style="display: none;">
+                <p class="cart-item-name">Item Name - ₹Price x Quantity</p>
+                <div class="cart-controls">
+                    <button class="increase-btn">+</button>
+                    <span class="quantity">1</span>
+                    <button class="decrease-btn">-</button>
+                    <button class="remove-btn">X</button>
+                </div>
+            </div>
+        </div>
+
+    <!-- Table Number Input -->
+    <div class="table-input">
+        <label for="table-number">Table Number:</label>
+        <input type="text" id="table-number" placeholder="Enter table number">
+    </div>
+
+    <div class="cart-footer">
+        <p id="total-para">Total: <strong id="cart-total">₹0</strong></p>
+        <div class="cart-buttons">
+            <button id="send-order-btn" class="send-btn">Send Order</button>
+        </div>
+    </div>
+</div>
+    
+
+    
+    
+        <section style="padding-top: 60px; " class="home" id="home">
+        <div class="home-slider">
+            <div class="slide active" style="background-image: url('hero-slider-1.jpg');"></div>
+            <div class="slide" style="background-image: url('hero-slider-2.jpg');"></div>
+            <div class="slide" style="background-image: url('hero-slider-3.jpg');"></div>
+        </div>
+        <div class="home-gif">      
+            <img src="animation.gif" alt="Running Animation">
+        </div>
+    </section>
+
+    <section style="padding-top: 60px;" id="about" class="about">
+        <h2 class="section-title">About us</h2>
+            <!-- Slideshow container -->
+            <div class="slideshow-container">
+
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade" ><img class="about-img" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899567/2024-01-29_ork7ws.jpg" alt="Image 1"></div>
+                <div class="mySlides fade" ><img class="about-img" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899567/2025-02-08_vdjnhs.jpg" alt="Image 2"></div>
+                <div class="mySlides fade"><img  class="about-img" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899566/2024-04-30_ljgsvt.jpg" alt="Image 3"></div>
+                <div class="mySlides fade" ><img class="about-img"  src="https://res.cloudinary.com/du6iqoato/image/upload/v1739900316/2024-01-31_wcmtf4.jpg" alt="Image 4"></div>
+
+            <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+               
+           
+            </div>
+            <br>
+            
+            <!-- The dots/circles -->
+           
+       
+    </section>
+
+    <!-- MENU SECTION -->
+
+    <section style="padding-top: 60px;" class="menu section bd-container" id="menu">
+        <h2 class="section-title">Menu of the week</h2>
+
+        <div class="menu__container bd-grid">
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739598550/vecteezy_ai-generated-a-plate-of-chicken-biryani-png-isolated-on_38450463_npbtfj.png" alt="" class="menu__img">
+                <h3 class="menu__name">BIRIYANI</h3>
+                <div>
+                    <a href="Biriyani-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://static.vecteezy.com/system/resources/previews/055/895/321/non_2x/chicken-noodle-soup-with-carrots-and-parsley-free-png.png" alt="" class="menu__img">
+                <h3 class="menu__name">SOUPS</h3>
+                <div>
+                    <a href="soups-menu-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739600426/vecteezy_chicken-wings-on-a-plate-with-lemon-slices-and-herbs_55454980__1_-removebg-preview_q97fs0.png" alt="" class="menu__img">
+                <h3 class="menu__name">STARTERS</h3>
+                <div>
+                    <a href="starters-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739602115/vecteezy_chicken-kebab-on-skewers_54066944_1_-Photoroom_fmpwdj.png" alt="" class="menu__img">
+                <h3 class="menu__name">Tandoori & Kababs</h3>
+                <div>
+                    <a href="Tandoori-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739602272/vecteezy_a-large-plate-of-assorted-fruits-and-vegetables-including_53581198_c8g9xy.png" alt="" class="menu__img">
+                <h3 class="menu__name">Platters</h3>
+                <div>
+                    <a href="Platters-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739602116/vecteezy_experience-authentic-thai-spicy-chicken-curry-simmered-in_55389390-Photoroom_oqlfna.png" alt="" class="menu__img">
+                <h3 class="menu__name">Curries</h3>
+                <div>
+                    <a href="curries-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739606339/119acb57-0f6f-4ef7-8827-0b0e20632afe-Photoroom_tlwjud.png" alt="" class="menu__img">
+                <h3 class="menu__name">Fried rice</h3>
+                <div>
+                    <a href="fried-rice-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739606828/14d9a501-5da7-411a-a965-3bb7d47951fd-Photoroom_kbs1v6.png" alt="" class="menu__img">
+                <h3 class="menu__name">Noodles</h3>
+                <div>
+                    <a href="noodles-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+            <div class="menu__content services-box">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739602115/vecteezy_delicious-grilled-kebab-wraps-filled-with-fresh-vegetables_55133661-Photoroom_jaclvq.png" alt="" class="menu__img">
+                <h3 class="menu__name">Pulao & Shawarma</h3>
+                <div>
+                    <a href="pulao-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+
+                <!-- <a href="#" class="button menu__buttoSSn"><i class='bx bx-cart-alt'></i></a> -->
+            </div>
+
+
+            <div class="menu__content">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739598550/vecteezy_ai-generated-a-plate-of-chicken-biryani-png-isolated-on_38450463_npbtfj.png" alt="" class="menu__img">
+                <h3 class="menu__name">Handi</h3>
+                <div>
+                    <a href="handi-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+            </div>
+
+            <div class="menu__content">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739606336/00e47ac4-88ea-4836-a622-8755ed606448-Photoroom_mnra99.png" alt="" class="menu__img">
+                <h3 class="menu__name">Desserts</h3>
+                <div>
+                    <a href="desserts-menu-item-sec.html"><button class="menu-button ">View Menu</button></a>
+                </div>
+            </div>
+        </div>
+    </section>    
+
+    <section style="padding-top: 60px;" class="why-choose-us" id="why-choose-us">
+    <div class="container">
+        <h1 class="section-title">Why Choose Us?</h1>
+        <h2 class="section-desc">
+            We use both original recipes and classic versions of famous food items.
+        </h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739958977/DALL_E_2025-02-19_15.19.00_-_A_minimalistic_icon_of_a_hand_holding_a_serving_tray_with_a_cloche_food_cover_outlined_in_yellow_with_a_fully_transparent_background._No_other_colo-Photoroom_pbe7ry.png" class="card-image" />
+                <h2 class="card-title">Food Service</h2>
+                <p class="card-description">
+                    Experience fine dining in a luxurious setting, where every dish is expertly prepared and presented. Enjoy impeccable service and a perfect ambiance, making each meal a memorable culinary journey.
+                </p>
+            </div>
+            <div class="card">
+                <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739900850/DALL_E_2025-02-18_23.15.45_-_A_simple_flat_line-art_style_icon_of_a_catering_setup._The_image_should_feature_a_serving_tray_with_a_cloche_dish_cover_plates_and_properly_drawn-Photoroom_onplbd.png" class="card-image" />
+                <h2 class="card-title">Catering</h2>
+                <p class="card-description">
+                    Delicious food, impeccable service!We offer premium catering for all occasions—weddings, parties, corporate events, and more. Let us bring the taste of excellence to your special moments!
+                </p>
+            </div>
+            <div class="card">
+                <img style="height: 70px; width:70px ; margin-bottom:25px;" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739959376/updated_image-Photoroom_lmjzad.png" class="card-image" />
+                <h2 class="card-title" >Best Offers</h2>
+                <p class="card-description">
+                    Taste the best food at affordable prices—delicious meals made to fit your budget, without compromising on quality.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+   
+    <section style="padding-top: 60px;" class="testimonials-section" id="reviews">
+        <h2 class="section-title">What Our Users Say</h2>
+
+        <div class="testimonials-container">
+            <!-- Testimonial Carousel -->
+            <div class="testimonials">
+                <div class="testimonial-wrapper">
+                    <button id="prev" class="nav-btn">&#10094;</button>
+                    
+                    <div class="testimonial-slide active">
+                        <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899906/P_1_f2v171.png" alt="User 1" class="testimonial-img">
+                        <p class="testimonial-text">"The taste of the food is delicious and the quantity is reasonable with the price.""
+                        </p>
+                        <h3>Teja Indhala</h3>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899565/user-image-with-black-background_l5micf.png" alt="User 2" class="testimonial-img">
+                        <p class="testimonial-text">"This restaurant never disappoints me. Food is good. Service is OK. The atmosphere is pleasant."</p>
+                        <h3>Kakara Akhilvardhankumar</h3>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899565/user-image-with-black-background_l5micf.png" alt="User 3" class="testimonial-img">
+                        <p class="testimonial-text">"I recently visited the restaurant cum Mandi restaurant with a group of 5 friends.The ambience of the restaurant was perfect for a casual get-together."</p>
+                        <h3>Sai Sumanth</h3>
+                    </div>
+                    
+                    <div class="testimonial-slide">
+                        <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899565/unnamed_hzsebz.png" alt="User 4" class="testimonial-img">
+                        <p class="testimonial-text" style="font-size: 12px;">"I have visited the restaurant of late, I ordered chicken biryani and tandoori here in the restaurant. The best restaurant for biryani in vizag. I have never tasted such delicious and juicy biryani. Chicken was so tender and yummy with mouth watering spices. Tandoori items are also very tasty and well cooked. Habibi restaurant is a must try for all the biryani lovers in Visakhapatnam. Paneer is also a must try here. Staff are so friendly.
+                            Thank you Habibi restaurant for the experience."</p>
+                        <h3>Ravi Kiran</h3>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899565/user-image-with-black-background_l5micf.png" alt="User 5" class="testimonial-img">
+                        <p class="testimonial-text">"We had a pleasant experience. We tried Grilled Chicken, Tandoori Roti and Rumali Roti and Mutton Soup. All the dishes were good. Will recommend this restaurant to people who want to have authentic Hyderabadi style biriyani in Vizag."</p>
+                        <h3>Suresh</h3>
+                    </div>
+                    <div class="testimonial-slide">
+                        <img src="https://res.cloudinary.com/du6iqoato/image/upload/v1739899906/P_z5jx3x.png" alt="User 6" class="testimonial-img">
+                        <p class="testimonial-text">"Excellent 👌 food ,mandi was very awesome and the pieces were tempting!!!"</p>
+                        <h3>Pranav Sai</h3>
+                    </div>
+
+                    <button id="next" class="nav-btn">&#10095;</button>
+                </div>
+
+                <!-- Dots Indicator -->
+                <div class="dots-container">
+                    <span class="dot active" onclick="setSlide(0)"></span>
+                    <span class="dot" onclick="setSlide(1)"></span>
+                    <span class="dot" onclick="setSlide(2)"></span>
+                </div>
+            </div>
+
+            <!-- Review Submission Form -->
+            <div class="review-form-container">
+                <h3 style="text-align: center; padding-bottom:20px;">Submit Your Review</h3>
+                <form id="review-form">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                    <textarea id="review" placeholder="Your Review" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+                <p id="form-message"></p>
+            </div>
+        </div>
+    </section>    
+    
+
+<section style="padding-top: 60px;" class="contact-section" id="contact">
+    <h2 class="section-title">Contact us</h2>
+    <div class="contact-container">
+        <div class="contact-details">
+            <h1 class="contact-title">Contact Details</h1>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class='bx bx-phone' id="call-icon"></i> <!-- Call Icon -->
+                    <div class="info-text">
+                        <span>Phone Number :</span>
+                        <span>(+91) 8855012012</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class='bx bx-envelope' id="email-icon"></i> <!-- Email Icon -->
+                    <div class="info-text">
+                        <span>Email :</span>
+                        <span>habibvizag@gmail.com</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class='bx bx-time' id="clock-icon"></i> <!-- Clock Icon -->
+                    <div class="info-text">
+                        <span>Working Hours:</span>
+                        <span>Mon - Sun (12.00 PM - 11.30 PM)</span>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class='bx bx-map' id="address-icon"></i> <!-- Address Icon -->
+                    <div class="info-text">
+                        <span>Address :</span>
+                        <span>Beside Vijaya Medical Centre, Gurudwara jun, Vishakapatanam.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contact-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3804.091318372116!2d83.3075764!3d17.7363951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a3943f6beb75637%3A0x69cd3e3492662429!2sHabibi%20Cafe%20Mandi%20Restaurant!5e0!3m2!1sen!2sin!4v1633084800000!5m2!1sen!2sin&key=AIzaSyDpllIr-B_EFttAoqvmHFDUw1lLDjEYrMg"
+                width="100%"
+                height="400"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+       
+    <div class="footer-iconTop">
+        <a href="#home"><i class='bx bx-up-arrow-alt'></i></a>
+    </div>
+
+    <div class="social-icons">
+        <a href="https://www.instagram.com/habibirestaurant_vizag?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="social-icon"><i class='bx bxl-instagram'></i></a>
+        <a href="https://www.facebook.com/habibirestaurantvizag/" class="social-icon"><i class='bx bxl-facebook'></i></a>
+        <a href="https://www.linkedin.com/company/habibi-restaurant-vizag/" class="social-icon"><i class='bx bxl-linkedin'></i></a>
+        <a href="https://wa.me/8855012012" class="social-icon"><i class='bx bxl-whatsapp'></i></a>
+        <a href="mailto:habibivizag@gmail.com" class="social-icon"><i class='bx bxl-gmail'></i></a>
+    </div>
+    <div class="footer-text">
+        <p>Copyright &copy; 2025 by Habibi Restaurant | All Rights Reservered.</p>
+    </div>
+    <div class="footer-text">
+        <p>Developed by <span style="color: #AF8F3E;">Sandeep</span> & <span style="color:#AF8F3E;">Ravi</span></p>
+    </div>
+
+</footer>
+
+
+   <script src="script.js"></script>
+
+   <!-- SCROLL REVEAL -->   
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+    
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+
+<script type="text/javascript">
+    // Initialize EmailJS with your public key
+    (function(){
+        emailjs.init("fnAZGgpxY3gPWRF2R"); // Your public key
+    })();
+
+    // Function to send email
+    function SendMail(event) {
+        event.preventDefault();  // Prevent form from submitting the traditional way
+
+        // Collect form data
+        var params = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            review: document.getElementById("review").value
+        };
+
+        // Send email using EmailJS
+        emailjs.send("service_q8urh5r", "template_qer24pa", params)
+        .then(function(res) {
+            alert("Review sent successfully! Status: " + res.status);
+        }, function(error) {
+            console.log("Failed to send review. Error: ", error);
+            alert("Failed to send review. Please try again.");
+        });
+    }
+
+    // Attach the send email function to form submit event
+    document.getElementById("review-form").addEventListener("submit", SendMail);
+</script>
+
+
+
+</body>
+</html>

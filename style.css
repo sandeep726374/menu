@@ -1,0 +1,1559 @@
+        /* Importing Google Fonts for consistent typography */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+        /* Global Reset to ensure consistent spacing and styling across browsers */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            border: none;
+            outline: none;
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Defining Root Variables for easy theme customization */
+        :root {   
+            /* HOME  */
+            --bg-color:#1f242d; /* Background Color */    
+            --second-bg-color: #FDF8EE; /* Secondary Background */ 
+            --third-bg-color: #323946; /* third Background */   
+            --text-color: #fff; /* Default Text Color */      
+            --nav-hover-color: #AF8F3E; /* Navbar Item Hover Color */    
+            --nav-bg:#1f242d; /* Navbar Background */ 
+            
+            /* MENU */
+            --header-height: 3rem; /* Height of the header */
+            --first-color: #069C54; /* Primary theme color */
+            --first-color-alt: #048654; /* Alternative primary color */
+            --title-color: #FCE5B0; /* Color for titles */
+            --menu-text-color: #FCE5B0; /* Default text color */
+            --menu-body-color: #1f242d; /* Background color of the body */
+            --body-font: 'Poppins', sans-serif; /* Main font family */
+            --biggest-font-size: 4rem;
+            --h1-font-size: 2rem;
+            --h2-font-size: 1.5rem;
+            --h3-font-size: 1.25rem; /* Used for .menu__name and .menu-button */
+            --normal-font-size: 1rem;
+            --small-font-size: .875rem;
+            --mb-1: .5rem; /* Small margin-bottom spacing */
+            --mb-2: 1rem;
+            --mb-3: 1.5rem;
+            --mb-4: 2rem;
+            --z-fixed: 100; /* Fixed z-index for elements like modals or overlays */
+        }
+
+        /* Logo Styling */
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .hlogo {
+            height: 50px; /* Logo Height */
+        }
+        .name {
+            height: 22px;
+            padding-left: 5px;
+            margin-top: 15px;
+        }
+
+        /* Base Styles */
+        html {
+            font-size: 62.5%; /* Setting base font size for rem units */
+            overflow-x: hidden;
+        }
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        section {
+            min-height: 100vh;
+            padding: 10rem 9% 2rem; /* Adds spacing around sections */
+        }
+
+        /* Home Section - Background Slider and Animation */
+        .home {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .home-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 2s linear;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .slide::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3); /* glowing effect */
+            z-index: 1;
+        }
+
+        /* Home Section GIF Styling */
+        .home-gif {
+            position: absolute;
+            padding-top: 40px;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        .home-gif img {
+            width: 400px;
+        }
+
+        /* Header Styles - Navbar & Logo */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            padding: 15px 5%;
+            background: transparent;
+            transition: background 0.3s ease-in-out;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            display: flex;
+        }
+        .header.scrolled {
+            background: var(--nav-bg);
+        }
+
+        /* Navbar Links */
+        .navbar a {
+            font-size: 1.5rem;
+            margin-left: 3rem;
+            transition: .3s;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px; 
+        }
+        .navbar a:hover, .navbar a.active {
+            color: var(--nav-hover-color);
+            font-weight: bold;
+        }
+
+        /* Menu Icon for Small Screens */
+        #menu-icon {
+            font-size: 3.6rem;
+            color: var(--text-color);
+            display: none;
+            cursor: pointer;
+        }
+        /* Icons Wrapper (Bag Icon & Menu Icon) */
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Bag Icon */ 
+        #bag-icon {
+            font-size:2rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        #bag-icon:hover{
+            color: var(--nav-hover-color);
+        }
+
+
+        
+/* Cart (Bag) Container */
+.bag-container {
+    width: 450px; /* Increased width for better visibility */
+    max-height: 500px; /* Prevent overflow */
+    overflow-y: auto;
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: white; /* Clean white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    z-index: 1000;
+    color: black; /* Readable black text */
+    border: 2px solid rgba(218, 183, 71, 0.511); /* Subtle black border */
+    display: none; /* Initially hidden */
+}
+
+/* Cart Header */
+.bag-container h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+  /* Close Button  */
+  .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: white;
+    border: none;
+    font-size: 12px;
+    width: 22px;
+    height: 23px;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+/* Table Number Input */
+.table-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.table-input label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black;
+    margin-right: 10px;
+}
+
+.table-input input {
+    width: 60%;
+    padding: 8px;
+    font-size: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+/* Cart Item Box */
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white; /* Matches container */
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 1px solid #ccc;
+}
+
+/* Hover Effect for Cart Items */
+.cart-item:hover {
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+}
+
+/* Cart Item Text */
+.cart-item p {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: black;
+    flex: 1;
+}
+
+/* Cart Controls (Quantity Buttons) */
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Increase & Decrease Buttons */
+.cart-controls button {
+    background-color: #069C54;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    color: white;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Hover Effect for Buttons */
+.cart-controls button:hover {
+    background-color: #1f242d;
+}
+
+/* Remove Button (Trash Icon) - Red Color */
+.cart-controls .remove-btn {
+    
+    color: red;
+    font-weight: bold;
+    background-color: rgb(247, 219, 219);
+    font-family: 'roboto';
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
+.cart-controls .remove-btn:hover {
+    background-color: rgb(246, 133, 133);
+}
+
+/* Cart Footer (Total Price) */
+.cart-footer {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 2px solid black;
+    color: black;
+}
+
+/* Cart Buttons (Save & Send) */
+.cart-buttons {
+    display: flex;
+   justify-content: center;
+    margin-top: 20px;
+}
+
+.save-btn, .send-btn {
+    width: 48%;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.save-btn {
+    background-color: #007bff;
+}
+
+.send-btn {
+    background-color: #28a745;
+}
+
+
+.send-btn:hover {
+    background-color: #1c7430;
+}
+
+/* Scrollbar for Bag Container */
+.bag-container::-webkit-scrollbar {
+    width: 3px;
+}
+
+.bag-container::-webkit-scrollbar-thumb {
+    background-color: rgb(254, 253, 253);
+    border-radius: 5px;
+}
+
+.bag-container::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Cart Items Section (Item list) */
+#cart-items {
+    margin-bottom: 20px;
+}
+
+/* Cart Total Section */
+#cart-total {
+    color: black !important; /* Ensures total price text remains black */
+    font-size: 1.4rem;
+}
+
+/* Cart Icon (Bag Icon) */
+.bag-icon {
+    font-size: 2.0rem;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    margin-right: 10px; /* Adjust spacing as needed */
+}
+
+.bag-icon:hover {
+    color: #efb550d2; /* Gold on hover */
+}
+
+/* Cart Item Quantity */
+.quantity {
+    font-size: 1.2rem;
+    color: black;
+    font-weight: bold;
+}
+
+/* Total Price Text */
+#total-para {
+    color: #222;
+}
+
+strong {
+    color: #222;
+}
+#table-number{
+    color: black;
+    font-size: 12px;
+    font-weight: bold;
+    width: 150px;
+}
+                    
+    /* About Section */
+    /* Slideshow container */ 
+    .about {
+        background: var(--third-bg-color);
+        padding: 50px 20px;
+        padding: 0% 1%;
+        margin: 0%;
+    }
+    
+    .about h2 {
+        text-align: center;
+    }
+    
+    /* Slideshow Container */
+    .slideshow-container {
+        max-width: 90%;
+        width: 900px;
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+    }
+    
+    /* Hide images by default */
+    .mySlides {
+        display: none;
+    }
+    
+    /* Responsive Images */
+    .about-img {
+        width: 100%;
+        height: auto; /* Allows the height to adjust automatically */
+        border-radius: 8px;
+        max-height: 500px; /* Prevents excessive stretching */
+        object-fit: cover;
+    }
+    
+    /* Navigation Buttons */
+    .prev, .next {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 12px 16px;
+        font-size: 18px;
+        color: white;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        transition: 0.3s ease-in-out;
+        z-index: 2;
+    }
+    
+    .prev { left: 10px; }
+    .next { right: 10px; }
+    
+    .prev:hover, .next:hover {
+        background: rgba(0, 0, 0, 0.8);
+    }
+    
+    /* Numbering Text (1/3, 2/3, etc.) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 14px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+    
+    /* Caption Text */
+    .text {
+        color: #f2f2f2;
+        font-size: 16px;
+        padding: 10px;
+        position: absolute;
+        bottom: 15px;
+        width: 100%;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 5px;
+    }
+    
+    /* Dots for Manual Navigation */
+    .dots-container {
+        text-align: center;
+        margin-top: 15px;
+    }
+    
+    .dot {
+        cursor: pointer;
+        height: 10px;
+        width: 10px;
+        margin: 5px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+    
+    .active-dot {
+        background-color: #717171;
+    }
+    
+    /* Fade Animation */
+    .fade {
+        animation: fadeEffect 1.2s ease-in-out;
+    }
+    
+    @keyframes fadeEffect {
+        from { opacity: 0.4; }
+        to { opacity: 1; }
+    }
+    
+    
+        /* ================== MENU SECTION STYLES ================== */
+
+        /* Menu Section Container */
+        .menu {
+            margin: var(--header-height) 0 0 0; /* Push content down below the header */
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            background-color: var(--menu-body-color); /* Dark background color */
+            color: var(--menu-text-color); /* Light text color for contrast */
+            line-height: 1.6;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-size: var(--biggest-font-size);
+            color: var(--title-color);
+            font-weight: bold;
+            margin-bottom: var(--mb-3);
+        }
+
+        /* Container that holds the menu items */
+        .bd-container {
+            max-width: 1000px; /* Limits the width of the container */
+            width: calc(100% - 2rem); /* Adjusts margin for smaller screens */
+            margin: 0 auto; /* Centers the container */
+        }
+
+        /* Grid layout for menu items */
+        .menu__container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+            gap: 2rem; /* Space between grid items */
+            justify-content: center;
+            align-items: stretch;
+        }
+
+        /* Styling for individual menu items */
+        .menu__content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--third-bg-color);
+            border-radius: .75rem; /* Rounded corners */
+            box-shadow: 0 4px 10px rgba(3, 74, 40, 0.3); /* Soft shadow effect */
+            padding: 1.5rem;
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+            width: 100%;
+            height: 100%;
+            justify-content: space-between;
+            gap: 1rem; /* Add gap between elements inside the container */
+        }
+
+        /* Hover effect on menu items */
+        .menu__content:hover {
+            transform: translateY(-5px); /* Lifts the item slightly */
+            box-shadow: 0 0 1.5rem var(--menu-text-color); /* Adds glow effect */
+        }
+
+        /* Styling for menu images */
+        .menu__img {
+            width: 140px; /* Ensure this matches the desired size */
+            height: 140px; /* Ensure this matches the desired size */
+            object-fit: cover; /* Ensures images maintain aspect ratio */
+            border-radius: 50%; /* Makes images circular */
+            margin-bottom: var(--mb-1); /* Add gap below the image */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Soft glow effect */
+        }
+
+        /* Menu item titles */
+        .menu__name {
+            font-size: 2rem; /* Exact font size for consistency */
+            font-weight: 700;
+            color: var(--title-color);
+            text-align: center;
+            text-transform: uppercase;
+        
+        }
+
+        /* Styling for buttons */
+        .menu-button {
+            color: var(--menu-text-color);
+            background-color: transparent;
+            border: 2px solid var(--menu-text-color);
+            font-weight: 700;
+            width: 100%;
+            min-height: 40px;
+            border-radius: 10px;
+            padding: 0.5rem 1rem; /* Internal padding */
+            font-size: 1.2rem; /* Exact font size for consistency */
+            transition: 0.3s ease-in-out;
+            text-transform: uppercase;
+            cursor: pointer; /* Added for better UX */
+            display: flex; /* Ensure proper alignment of text */
+            align-items: center; /* Center text vertically */
+            justify-content: center; /* Center text horizontally */
+        }
+
+        /* Button hover effect */
+        .menu-button:hover {
+            background-color: var(--first-color);
+            border-color: var(--first-color);
+            color: #fff;
+        }
+
+
+
+
+
+        /* Why Choose Us Section */
+        .why-choose-us {
+            text-align: center;
+            padding: 50px 20px;
+            background:var(--third-bg-color);
+        }
+
+        .why-choose-us p {
+            font-size: 15px;
+            color: #333;
+        }
+        .section-desc{
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        /* Cards Container */
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: nowrap; /* Keeps cards in a row for large screens */
+        }
+
+        /* Individual Card */
+        .card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            height: 350px;
+            width: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            box-shadow: 0 4px 10px rgba(18, 19, 15, 0.1);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Hover Effect - Floating Shadow */
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 209, 82, 0.872);
+        }
+
+        /* Card Image */
+        .card img {
+            width: 110px;
+            height: 110px;
+            margin-bottom: 0px;
+        }
+
+        /* Card Title */
+        .card-title  {
+            font-size: 2rem;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        /* Card Description */
+        .card-description {
+            font-size: 0.9rem;
+            color: #666;
+            padding: 0 15px;
+        }
+
+
+
+
+        /* Global Styles */
+        .testimonials-section body {
+            font-family: var(--body-font);
+            color: var(--text-color);
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Layout */
+        .testimonials-section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .testimonials-section h2 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .testimonials-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch;
+            gap: 40px;
+        }
+
+        /* Equal height for Testimonials & Review Form */
+        .testimonials,
+        .review-form-container {
+            flex: 1;
+            max-width: 500px;
+            min-width: 300px;
+            background: var(--text-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Testimonials */
+        .testimonial-wrapper {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            height: 315px;
+        }
+
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .testimonial-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .testimonial-text {
+            font-size: 18px;
+            font-style: italic;
+            color: #111;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: var(--nav-hover-color);
+        }
+
+        span {
+            font-size: 14px;
+            color: var(--third-bg-color);
+        }
+
+        /* Navigation Buttons (Prev & Next) - INSIDE the Container */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--text-color);
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: background 0.3s ease-in-out;
+            z-index: 10;
+        }
+
+        .nav-btn:hover {
+            background: var(--nav-hover-color);
+        }
+
+        #prev {
+            left: 4px;
+        }
+
+        #next {
+            right: 4px;
+        }
+
+        /* Dots Indicator */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .dot {
+            height: 8px;
+            width: 8px;
+            margin: 0 10px;
+            background-color: var(--third-bg-color);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background-color: var(--nav-hover-color);
+        }
+
+        /* Review Form */
+        .review-form-container h2 {
+            color: var(--nav-hover-color);
+        }
+
+        .review-form {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        form input,
+        form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--third-bg-color);
+            border-radius: 5px;
+        }
+
+        form textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        form button {
+            width: 100%;
+            padding: 10px;
+            background: var(--nav-hover-color);
+            border: none;
+            color: var(--text-color);
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        form button:hover {
+            background: var(--first-color);
+        }
+
+
+
+
+        /* Contact Section Styles */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+            padding: 60px;
+            background: var(--third-bg-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Ensures contact details and contact map are in a single row */
+        .contact-container {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+            justify-content: space-between;
+            width: 100%;
+            align-items: stretch; /* Ensures equal height */
+        }
+
+        /* Styling for contact details */
+        /* Contact Title Styling */
+        .contact-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color:#2343d6;
+            text-decoration:underline;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .contact-details {
+            flex: 1;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+            color: #222;
+            background: #ffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-item i {
+            font-size: 2.3rem;
+            color: var(--first-color);
+        }
+
+        .info-text {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        .info-text span:first-child {
+            font-weight: bold;
+            font-size: 1.8rem;
+        }
+
+        .info-text span:last-child {
+            font-size: 1.8rem;
+            color: #222;
+            text-align: left;
+        }
+
+        /* Styling for contact map */
+        .contact-map {
+            flex: 1;
+            height: 500px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-map iframe {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+
+        /* FOOTER SECTION */
+
+        .footer {
+            padding: 2rem 9%;
+            background: var(--bg-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            text-align: center;
+        }
+
+
+        .footer-text{
+            flex: 1;
+            font-size: 1.6rem;
+            color: var(--text-color);
+        }
+
+        .footer-iconTop{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: .8rem;
+            background: var(--third-bg-color);
+            border-radius: .8rem;
+            transition: .5s ease;
+        }
+            
+        .footer-iconTop a:hover{
+        transform: scale(1.3);
+        filter: drop-shadow(0 0 0.5rem var(--second-bg-color));
+            
+        }
+
+        .footer-iconTop a i {
+            font-size: 2.4rem;
+            color: var(--second-bg-color);
+        }
+
+        
+
+        /* Footer Social Icons */
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            color: var(--text-color);
+            transition: color 0.3s ease-in-out;
+        }
+
+        .social-icon:hover {
+            color: var(--nav-hover-color);
+        }
+
+
+
+        /* Responsive Design for Various Screen Sizes */
+        @media (max-width: 1200px) {
+            html {
+                font-size: 55%;
+            }
+            .testimonials-container {
+                gap: 30px;
+            }
+
+            .testimonials,
+            .review-form-container {
+                max-width: 450px;
+            }
+        }
+
+        /* Responsive design for tablets and smaller screens */
+        @media (max-width: 1024px) {
+            .menu__container {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns for medium screens */
+                margin: 0 3rem;
+            }
+
+            .testimonials,
+            .review-form-container {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .bag-container {
+                width: 90%;
+                right: 5%;
+                max-height: 450px;
+            }
+        
+            .cart-item {
+                flex-direction: row;
+                align-items: center;
+            }
+        
+            .cart-controls {
+                justify-content: space-between;
+            }
+        
+            .cart-controls button {
+                padding: 5px 10px;
+                font-size: 1.2rem;
+            }
+
+
+            .prev, .next {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .header {
+                padding: 2rem 3%;
+            }
+            section {
+                padding: 10rem 3% 2rem;
+            }
+
+            .cards {
+                max-width: 800px;
+            }
+            .card {
+                width: 280px;
+            }
+            .card-title {
+                font-size: 18px;
+            }
+            .card-description {
+                font-size: 0.9rem;
+            }
+
+            .testimonials-section {
+                padding: 40px 15px;
+            }
+
+            .testimonial-text {
+                font-size: 16px;
+            }
+
+            .nav-btn {
+                font-size: 18px;
+                padding: 8px 12px;
+            }
+
+            .footer{
+                padding: 2rem 3%;
+            }
+        }
+
+        @media (max-width: 816px) {
+            #menu-icon {
+                display: block;
+                cursor: pointer;
+            }
+            .home-gif img {
+                width: 300px;
+            }
+            .navbar {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: 45%;
+                height: auto;
+                padding: 1rem;
+                background-color: var(--second-bg-color);
+                border-top: .1rem solid rgba(0,0,0,.2);
+                box-shadow: 0 .5rem 1rem rgba(0,0,0,.2);
+                display: none;
+                flex-direction: column;
+                border-radius: 10px;
+            }
+            .navbar.active {
+                display: flex;
+            }
+            .navbar a {
+                font-size: 1.8rem;
+                margin: 1rem 0;
+                color: black;
+            }
+
+            /* Menu Section Responsive */
+            .menu__container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem; /* Reduce space between items */
+            }
+
+            .testimonial-text {
+                font-size: 14px;
+            }
+
+            .nav-btn {
+                font-size: 16px;
+                padding: 6px 10px;
+            }
+
+            .contact-section {
+                padding: 40px;
+            }
+            .contact-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .contact-details, .contact-map {
+                width: 100%;
+            }
+            .contact-map {
+                height: 350px;
+            }
+
+            .contact-details {
+                padding: 30px;
+            }
+
+            .contact-title {
+                font-size: 1.8rem;
+            }
+
+            .info-item {
+                flex-direction: row;
+                text-align: center;
+            }
+
+            .info-item i {
+                font-size: 3rem;
+            }
+        }
+
+
+
+        @media (max-width: 768px) {
+            .testimonials-section {
+                padding: 30px 10px;
+            }
+
+            .testimonial-text {
+                font-size: 14px;
+            }
+
+            .nav-btn {
+                font-size: 14px;
+                padding: 5px 8px;
+            }
+
+            #prev {
+                left: 5px;
+            }
+
+            #next {
+                right: 5px;
+            }
+
+            .cards {
+                flex-wrap: wrap;
+                flex-direction: column;
+                align-items: center;
+            }
+            .why-choose-us h2{
+                font-size: 12px;;
+            }
+            .card {
+                width: 90%;
+            }
+
+            .bag-container {
+                width: 60%;
+                right: 0;
+                max-height: 450px;
+                top: 65px;
+                padding: 10px;
+                border-radius: 10px;
+            }
+
+            .slideshow-container {
+                max-width: 100%;
+            }
+
+            .prev, .next {
+                font-size: 14px;
+                padding: 8px;
+            }
+        }
+
+        /* Responsive design for small screens like mobile phones */
+        @media (max-width: 575px) {
+            .bd-container {
+                width: calc(100% - 22rem); /* Increased margin for small screens */
+            }
+            .menu__container {
+                grid-template-columns: repeat(1, 1fr); /* Single column layout */
+            }
+            .menu__content {
+                width: 100%;
+            }
+            .menu__img {
+                width: 120px; /* Reduce image size on small screens */
+                height: 120px;
+            }
+
+
+            .card {
+                width: 100%;
+            }
+            .section-heading {
+                font-size: 2rem;
+            }
+            .section-description {
+                font-size: 0.9rem;
+            }
+
+            .testimonials-container {
+                flex-direction: column;
+            }
+            
+
+            .testimonials {
+                padding: 15px;
+            }
+
+            .testimonial-text {
+                font-size: 14px;
+            }
+            .social-icon{
+                height: 30px;
+                width: 30px;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+            html {
+                font-size: 50%;
+            }
+            .home-gif img {
+                width: 250px;
+            }
+            .navbar {
+                width: 55%;
+                padding: 1rem;
+            }
+            .navbar a {
+                font-size: 1.6rem;
+                margin: 1rem 0;
+            }
+            .icons{
+                font-size: 0rem;
+            }
+            
+            .bag-container {
+                width: 100%;
+                right: 0;
+                height: 100vh;
+                top: 65px;
+                padding: 10px;
+                border-radius: 0;
+            }
+        
+            .cart-item {
+                display: flex;
+                justify-content: space-between; /* Keep name & controls on the same line */
+                align-items: flex-start; /* Align text to the top */
+                gap: 10px;
+                flex-wrap: wrap; /* Allow text to wrap if necessary */
+            }
+
+        
+            .cart-item-name {
+                flex: 1; /* Take up available space */
+                min-width: 60%; /* Ensure it has enough space */
+                white-space: normal; /* Allow wrapping */
+                word-wrap: break-word;
+                font-size: 8px;
+                font-weight: 100;
+            }
+        
+            .cart-controls {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                gap: 6px;
+                flex-wrap: nowrap; /* Prevent buttons from wrapping */
+            }
+        
+            .cart-controls button,
+            .cart-controls .quantity {
+                padding: 4px 8px;
+                font-size: 0.9rem;
+            }
+        
+            .cart-footer {
+                font-size: 1.4rem;
+            }    
+
+            .slideshow-container
+            {
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+            }
+            .prev, .next {
+                font-size: 12px;
+                padding: 6px;
+            }
+        
+            .dot {
+                height: 8px;
+                width: 8px;
+            }
+
+
+            #menu{
+                padding-left: 0px;
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                height:100%;
+                padding:10px 40px;
+                
+            }
+            .menu__container{
+                width: 100%;
+                flex-grow: 2;
+                margin: 0%;
+            }
+
+            .section-title{
+                width: 100%;
+            }
+            .menu__content{
+                height: auto;
+                padding:20px 0px;
+            }
+            .menu__img{
+                height: 150px;
+                width: 150px;
+            }
+            .menu__name{
+                font-size:18px;
+            }
+            .menu-button{
+                padding: 0px 12px;
+                font-size: 12px;
+            }
+
+            .contact-section
+            {
+                margin: 0px;
+                padding:  10px;
+            }
+            .contact-title {
+                font-size: var(--h2-font-size);
+            }
+            .info-item {
+                flex-direction: row;
+                align-items: center;
+                text-align: center;
+            }
+            .info-item i {
+                font-size: 2.5rem;
+            }
+            .info-text span {
+                font-size: 3rem;
+                text-align: left;
+            }
+            .contact-map {
+                height: 300px;
+            }
+            .contact-title {
+                font-size: 1.5rem;
+            }
+
+            .contact-title::after {
+                width: 50px;
+                height: 3px;
+            }
+
+            .info-text span:first-child {
+                font-size: 1.6rem;
+            }
+
+            .info-text span:last-child {
+                font-size: 1.2rem;
+            }
+
+
+            .testimonials-section {
+                padding: 20px 10px;
+            }
+
+            .nav-btn {
+                font-size: 12px;
+                padding: 4px 6px;
+            }
+
+            .testimonial-text {
+                font-size: 12px;
+            }
+
+            .dot {
+                height: 6px;
+                width: 6px;
+            }
+
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-text {
+                font-size: 1.4rem;
+                margin-top: 1rem;
+            }
+        }
+
+        @media (max-width: 365px) {
+            html {
+                font-size: 45%;
+            }
+
+            .testimonial-text {
+                font-size: 11px;
+            }
+
+            .nav-btn {
+                font-size: 10px;
+                padding: 3px 5px;
+            }
+            .footer p{
+                text-align: center;
+                margin-top: 2rem;
+            }
+        }
+
+

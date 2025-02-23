@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soup Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="menu-ITEM-Section.css">
+    <link rel="shortcut icon" href="https://res.cloudinary.com/du6iqoato/image/upload/v1739440849/logo_png-removebg-preview_zsdozb.png" type="image/svg+xml">
+</head>
+
+<body>
+
+    <!-- NAVIGATION BAR -->
+    <header class="header">
+        <div class="logo">
+            <img class="hlogo" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739440849/logo_png-removebg-preview_zsdozb.png" alt="logo">
+            <img class="name" src="https://res.cloudinary.com/du6iqoato/image/upload/v1739440848/BrandName_png-removebg-preview_mby06f.png" alt="BrandName">
+        </div>
+        <nav class="navbar">
+            <a href="#VNoodles-container">Veg Noodles</a>
+            <a href="#NVNoodles-container">Non-Veg Noodles</a>
+        </nav>
+
+       
+        <div class="icons-container">
+            <i class="fa fa-shopping-bag bag-icon"></i> <!-- Add this line -->
+            <a href="index.html#menu" class="home-icon">
+                <i class="fa fa-home"></i>
+            </a>
+            <i class="fa fa-bars" id="menu-icon"></i>
+        </div>
+        
+    </header>
+
+
+    <!-- Cart Container -->
+<div class="bag-container" id="cart-container">
+    <button class="close-btn" id="close-cart">X</button> 
+    <h3>Your Cart</h3>
+    <div id="cart-items">
+        <!-- Template for Cart Items (Initially Hidden) -->
+        <div class="cart-item template" style="display: none;">
+            <p class="cart-item-name">Item Name - ₹Price x Quantity</p>
+            <div class="cart-controls">
+                <button class="increase-btn">+</button>
+                <span class="quantity">1</span>
+                <button class="decrease-btn">-</button>
+                <button class="remove-btn">X</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Number Input -->
+    <div class="table-input">
+        <label for="table-number">Table Number:</label>
+        <input type="text" id="table-number" placeholder="Enter table number">
+    </div>
+
+    <div class="cart-footer">
+        <p id="total-para">Total: <strong id="cart-total">₹0</strong></p>
+        <div class="cart-buttons">
+            <button id="send-order-btn" class="send-btn">Send Order</button>
+        </div>
+    </div>
+   </div>
+
+
+
+    <section class="menu" id="menu">
+        <div>
+            <h2 class="heading">Veg <span>Noodles</span></h2>
+            <div class="menu-container" id="VNoodles-container">
+            </div>
+        </div>
+
+        <div>
+            <h2 class="heading">Non Veg <span>Noodles</span></h2>
+            <div class="menu-container" id="NVNoodles-container"></div>
+        </div>
+    </section>
+
+    <div id="popup-message" class="popup">Item added to cart!</div>
+
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="menu-ITEM-Section.js"></script>
+</body>
+
+</html>
