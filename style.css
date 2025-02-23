@@ -124,9 +124,13 @@
             transform: translate(-50%, -50%);
             z-index: 2;
         }
+        
         .home-gif img {
-            width: 400px;
+            width: 100%;      /* Allows the image to scale fluidly on smaller devices */
+            max-width: 400px; /* Limits the image size on larger screens */
+            height: auto;     /* Maintains the aspect ratio */
         }
+
 
         /* Header Styles - Navbar & Logo */
         .header {
@@ -1311,22 +1315,6 @@ strong {
         /* Responsive design for small screens like mobile phones */
         @media (max-width: 575px) {
 
-            .home-gif{
-                width: 100vw; 
-                margin: 0;
-                padding: 0px 0px !important;
-                height:100vh;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: stretch;
-
-            }
-            .home-gif img{
-                height: 100vh;
-                width: 100vw;
-                margin: 0;
-            }
             section .about{
                 height: auto !important;
                 min-height: 40vh;  
