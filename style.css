@@ -1,4 +1,4 @@
-        /* Importing Google Fonts for consistent typography */
+/* Importing Google Fonts for consistent typography */
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
         /* Global Reset to ensure consistent spacing and styling across browsers */
@@ -124,13 +124,9 @@
             transform: translate(-50%, -50%);
             z-index: 2;
         }
-        
         .home-gif img {
-            width: 100%;      /* Allows the image to scale fluidly on smaller devices */
-            max-width: 400px; /* Limits the image size on larger screens */
-            height: auto;     /* Maintains the aspect ratio */
+            width: 400px;
         }
-
 
         /* Header Styles - Navbar & Logo */
         .header {
@@ -1314,14 +1310,28 @@ strong {
 
         /* Responsive design for small screens like mobile phones */
         @media (max-width: 575px) {
-            .home-gif img {
-                width: 90vw;      /* 90% of the viewport width */
-                max-width: none;  /* Remove the 400px cap so it can scale larger */
+            /* changed by ravi */
+            .home-gif{
+                width: 100vw; 
+                margin: 0;
+                
+                height:100vh;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: stretch;
+
             }
-            section .about{
-                height: auto !important;
-                min-height: 40vh;  
-            }   
+            .home-gif img{
+                height: 100vh;
+                width: 100vw;
+                margin: 0;
+            }            
+            section.about {
+                height: auto !important; 
+                min-height: 50vh; 
+                padding: 20px 0px; 
+            }
             .bd-container {
                 width: calc(100% - 22rem); /* Increased margin for small screens */
             }
@@ -1367,11 +1377,9 @@ strong {
         }
 
         @media (max-width: 450px) {
+            
             html {
                 font-size: 50%;
-            }
-            .home-gif img {
-                width: 250px;
             }
             .navbar {
                 width: 55%;
@@ -1384,19 +1392,17 @@ strong {
             .icons{
                 font-size: 0rem;
             }
-            
+            /* //chagned by ravi */
             .bag-container {
                 position: fixed;
-                width: 100%;
-                right: 0;
-                max-height: 100vh;
-                z-index: 1000;
-                overflow-y: auto;
                 bottom: 0;
-                top: 65px;
-                padding: 10px;
-                border-radius: 0;
-            }
+                left: 0;
+                width: 100%;
+                max-height: 100vh; 
+                z-index: 1000; 
+                overflow-y: auto; 
+                border-top: 2px solid #ddd;
+            } 
         
             .cart-item {
                 display: flex;
@@ -1433,6 +1439,12 @@ strong {
             .cart-footer {
                 font-size: 1.4rem;
             }    
+
+            .slideshow-container
+            {
+                margin-bottom: 0px;
+                padding-bottom: 0px;
+            }
             .prev, .next {
                 font-size: 12px;
                 padding: 6px;
@@ -1565,5 +1577,3 @@ strong {
                 margin-top: 2rem;
             }
         }
-
-
