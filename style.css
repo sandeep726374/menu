@@ -1314,7 +1314,10 @@ strong {
 
         /* Responsive design for small screens like mobile phones */
         @media (max-width: 575px) {
-
+            .home-gif img {
+                width: 90vw;      /* 90% of the viewport width */
+                max-width: none;  /* Remove the 400px cap so it can scale larger */
+            }
             section .about{
                 height: auto !important;
                 min-height: 40vh;  
