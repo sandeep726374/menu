@@ -42,37 +42,62 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-    // Menu Icon and Navbar Setup
-    const menuIcon = document.getElementById('menu-icon'); // Ensure this matches your menu icon ID in HTML
-    const navbar = document.querySelector('.navbar'); // Ensure this matches your navbar class in HTML
 
-    // Toggle Navbar visibility on menu icon click
-    menuIcon.addEventListener('click', () => {
-        menuIcon.classList.toggle('bx-x');
-        navbar.classList.toggle('active');
+// Menu Icon and Navbar Setup
+const menuIcon = document.getElementById('menu-icon'); // Ensure this matches your menu icon ID in HTML
+const navbar = document.querySelector('.navbar'); // Ensure this matches your navbar class in HTML
+const navLinks = document.querySelectorAll('.navbar a'); // Select all navbar links
+
+// Toggle Navbar visibility on menu icon click
+menuIcon.addEventListener('click', (event) => {
+    menuIcon.classList.toggle('bx-x');
+    navbar.classList.toggle('active');
+    event.stopPropagation(); // Prevent body click from closing navbar immediately
+});
+
+// Close navbar if clicked outside of it
+document.addEventListener('click', (event) => {
+    if (!navbar.contains(event.target) && !menuIcon.contains(event.target)) {
+        closeNavbar();
+    }
+});
+
+// Close navbar when a navigation link is clicked
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        closeNavbar();
+    });
+});
+
+// Function to close the navbar
+function closeNavbar() {
+    navbar.classList.remove('active');
+    menuIcon.classList.remove('bx-x');
+}
+
+// Handle scroll and navigation link highlight
+let sections = document.querySelectorAll('section');
+let navlinks = document.querySelectorAll('header nav a');
+
+window.onscroll = () => {
+    sections.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 150;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute('id');
+
+        if (top >= offset && top < offset + height) {
+            navlinks.forEach(link => {
+                link.classList.remove('active');
+                document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
+            });
+        }
     });
 
-    let sections = document.querySelectorAll('section');
-    let navlinks = document.querySelectorAll('header nav a');
+    let header = document.querySelector('header');
+    header.classList.toggle('sticky', window.scrollY > 100);
+};
 
-    window.onscroll = () => {
-        sections.forEach(sec => {
-            let top = window.scrollY;
-            let offset = sec.offsetTop - 150;
-            let height = sec.offsetHeight;
-            let id = sec.getAttribute('id');
-
-            if (top >= offset && top < offset + height) {
-                navlinks.forEach(link => {
-                    link.classList.remove('active');
-                    document.querySelector('header nav a[href*=' + id + ']').classList.add('active');
-                });
-            }
-        });
-
-        let header = document.querySelector('header');
-        header.classList.toggle('sticky', window.scrollY > 100);
-    };
 
 
     // ABOUT SECTION CUROSAL
@@ -99,9 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
 window.onload = function () {
     ScrollReveal({ reset: true, distance: '80px', duration: 2000, delay: 200 });
 
-    ScrollReveal().reveal('.home-content, .heading, .section-title', { origin: 'top' });
+    ScrollReveal().reveal('.home-content, .heading, .section-title, .review-form-container h3', { origin: 'top' });
     ScrollReveal().reveal('.menu-container,.bd-grid,.testimonials-container, .portfolio-box, .contact form, .cards, .contact-container', { origin: 'bottom' });
-    ScrollReveal().reveal('.home-content h1, .why-choose-us p, .section-desc, .info-item', { origin: 'left' });
+    ScrollReveal().reveal('.home-content h1, .why-choose-us p, .section-desc, .info-item, .menu__content h3', { origin: 'left' });
     ScrollReveal().reveal('.home-content p, .about-content, .head, .about-info', { origin: 'right' });
 };
 
@@ -169,7 +194,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // TO DISPLAY THE ITEMS IN BAG-CONTAINER FROM THE LOCAL STORAGE
-
 document.addEventListener("DOMContentLoaded", () => {
     let cart = JSON.parse(localStorage.getItem("cart")) || []; // Load cart from local storage
     const cartContainer = document.getElementById("cart-container");
@@ -177,49 +201,67 @@ document.addEventListener("DOMContentLoaded", () => {
     const cartItemTemplate = document.querySelector(".cart-item.template");
     const cartIcon = document.querySelector(".bag-icon");
     const sendOrderButton = document.getElementById("send-order-btn");
-    document.getElementById("close-cart").addEventListener("click", function() {
-        document.getElementById("cart-container").style.display = "none";
-    });
-    
+    const closeCartButton = document.getElementById("close-cart");
+
+    // Function to close the cart
+    function closeCart() {
+        cartContainer.style.display = "none";
+    }
 
     // Hide cart initially
     cartContainer.style.display = "none";
-  
+
     // Toggle cart visibility when clicking the bag icon
-    cartIcon.addEventListener("click", () => {
+    cartIcon.addEventListener("click", (event) => {
         cartContainer.style.display = cartContainer.style.display === "none" ? "block" : "none";
+        event.stopPropagation(); // Prevent body click from closing immediately
     });
-  
+
+    // Prevent closing when clicking inside the cart container
+    cartContainer.addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevent event from reaching the document click listener
+    });
+
+    // Close cart when clicking outside of it
+    document.addEventListener("click", (event) => {
+        if (!cartContainer.contains(event.target) && !cartIcon.contains(event.target)) {
+            closeCart();
+        }
+    });
+
+    // Close cart when clicking the close button
+    closeCartButton.addEventListener("click", closeCart);
+
     // Function to update cart UI & save to local storage
     function updateCart() {
         cartItemsContainer.innerHTML = ""; // Clear previous cart items
         let total = 0;
-  
+
         cart.forEach((item, index) => {
             total += item.price * item.quantity;
-  
+
             // Clone template and remove "template" class
             const newItem = cartItemTemplate.cloneNode(true);
             newItem.classList.remove("template");
             newItem.style.display = "flex";
-  
+
             newItem.querySelector(".cart-item-name").innerText = `${item.name} - ₹${item.price} x ${item.quantity}`;
             newItem.querySelector(".quantity").innerText = item.quantity;
-  
+
             // Add event listeners for buttons
             newItem.querySelector(".increase-btn").addEventListener("click", () => updateQuantity(index, 1));
             newItem.querySelector(".decrease-btn").addEventListener("click", () => updateQuantity(index, -1));
             newItem.querySelector(".remove-btn").addEventListener("click", () => removeFromCart(index));
-  
+
             cartItemsContainer.appendChild(newItem);
         });
-  
+
         document.getElementById("cart-total").innerText = `₹${total}`;
         
         // Save updated cart to local storage
         localStorage.setItem("cart", JSON.stringify(cart));
     }
-  
+
     // Function to update quantity
     function updateQuantity(index, change) {
         if (cart[index].quantity + change > 0) {
@@ -229,13 +271,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         updateCart(); // Automatically save to local storage
     }
-  
+
     // Function to remove item from cart
     function removeFromCart(index) {
         cart.splice(index, 1);
         updateCart(); // Automatically save to local storage
     }
-  
+
     // Function to send order via WhatsApp
     sendOrderButton.addEventListener("click", () => {
         const tableNumber = document.getElementById("table-number").value.trim();
@@ -243,44 +285,43 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Please enter your table number.");
             return;
         }
-  
+
         if (cart.length === 0) {
             alert("Your cart is empty!");
             return;
         }
-  
+
         let orderText = `*New Order from Table ${tableNumber}*%0A%0A`;
         cart.forEach(item => {
             orderText += `🛒 ${item.name} - ₹${item.price} x ${item.quantity}%0A`;
         });
-  
+
         orderText += `%0A🧾 *Total Bill: ₹${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}*`;
-  
+
         const restaurantNumber = "918919313108"; // WhatsApp format: Add '91' for India
         const whatsappURL = `https://wa.me/${restaurantNumber}?text=${orderText}`;
         window.location.href = whatsappURL; // Open WhatsApp directly
     });
-  
+
     // Add item to cart when clicking the cart icon on a menu item
     document.querySelectorAll(".cart").forEach(cartButton => {
         cartButton.addEventListener("click", function () {
             const menuItem = this.closest(".menu-item-box");
             const name = menuItem.querySelector(".menu-item-name").innerText;
             const price = parseFloat(menuItem.querySelector(".menu-item-price").innerText.replace("₹", ""));
-  
+
             const existingItem = cart.find(item => item.name === name);
             if (existingItem) {
                 existingItem.quantity++;
             } else {
                 cart.push({ name, price, quantity: 1 });
             }
-  
+
             updateCart(); // Automatically save to local storage
         });
     });
-  
+
     // Load cart from local storage when page loads
     updateCart();
-  });
-  
+});
   
