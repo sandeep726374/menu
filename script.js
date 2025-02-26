@@ -280,29 +280,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Function to send order via WhatsApp
 sendOrderButton.addEventListener("click", () => {
-    const tableNumber = document.getElementById("table-number").value.trim();
-    if (!tableNumber) {
-        alert("Please enter your table number.");
-        return;
-    }
-  
-    if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-    }
-  
-    let orderText = `*  New Order from Table ${tableNumber} :*%0A%0A`;
-    cart.forEach((item, index) => {
-        orderText += `${index + 1}. ${item.name} - ₹${item.price} x ${item.quantity}%0A`;
-    });
-  
-    orderText += `%0A🧾 *Total Bill: ₹${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}*`;
-  
-    const restaurantNumber = "918919313108"; // WhatsApp format: Add '91' for India
-    const whatsappURL = `https://wa.me/${restaurantNumber}?text=${orderText}`;
-    window.location.href = whatsappURL; // Open WhatsApp directly
+  const tableNumber = document.getElementById("table-number").value.trim();
+  if (!tableNumber) {
+      alert("Please enter your table number.");
+      return;
+  }
+
+  if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+  }
+
+  let orderText = `*New Order from Table ${tableNumber} :*%0A%0A`;
+  cart.forEach((item, index) => {
+      orderText += `${index + 1}. ${item.name} - ₹${item.price} x ${item.quantity}%0A`;
   });
-  
+
+  orderText += `%0A🧾 *Total Bill: ₹${cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}*`;
+
+  const restaurantNumber = "918919313108"; // WhatsApp format: Add '91' for India
+  const whatsappURL = `https://wa.me/${restaurantNumber}?text=${orderText}`;
+  window.location.href = whatsappURL; // Open WhatsApp directly
+});
+
+
     // Add item to cart when clicking the cart icon on a menu item
     document.querySelectorAll(".cart").forEach(cartButton => {
         cartButton.addEventListener("click", function () {
